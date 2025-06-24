@@ -2,8 +2,9 @@
 using eCommerceApp.Application.DTOs.Category;
 
 namespace eCommerceApp.Application.DTOs.Product {
-    public class UpdateProduct : ProductBase {
+    public class GetProduct : ProductBase {
         [Required]
         public Guid Id { get; set; }
+        public GetCategory? Category { get; set; }
     }
 }
