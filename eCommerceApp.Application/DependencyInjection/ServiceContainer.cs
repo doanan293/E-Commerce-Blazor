@@ -1,6 +1,7 @@
 ﻿using eCommerceApp.Application.Mapping;
 using eCommerceApp.Application.Services.Implementations;
 using eCommerceApp.Application.Services.Interfaces;
+using eCommerceApp.Application.Validation;
 using eCommerceApp.Application.Validation.Authentication;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -14,6 +15,7 @@ namespace eCommerceApp.Application.DependencyInjection {
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
+            services.AddScoped<IValidationService, ValidationService>();
             return services;
         }
     }
