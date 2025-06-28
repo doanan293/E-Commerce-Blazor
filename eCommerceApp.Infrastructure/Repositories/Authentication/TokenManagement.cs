@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -35,14 +36,14 @@ namespace eCommerceApp.Infrastructure.Repositories.Authentication {
             }
 
             public string GetRefreshToken() {
-                const int byteSize = 64;
+                const int byteSize = 256;
                 byte[] randomBytes = new byte[byteSize];
                 using(RandomNumberGenerator rng = RandomNumberGenerator.Create()) {
                     rng.GetBytes(randomBytes);
                 }
-                return Convert.ToBase64String(randomBytes);
+                string token = Convert.ToBase64String(randomBytes);
+                return WebUtility.UrlEncode(token);
             }
-
 
             public List<Claim> GetUserClaimsFromToken(string token) {
                 var tokenHandler = new JwtSecurityTokenHandler();
