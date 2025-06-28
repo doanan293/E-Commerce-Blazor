@@ -37,7 +37,7 @@ namespace eCommerceApp.Infrastructure.DependencyInjection {
             services.AddScoped<IGeneric<Product>, GenericRepository<Product>>();
             services.AddScoped<IGeneric<Category>, GenericRepository<Category>>();
             services.AddScoped(typeof(IAppLogger<>), typeof(SerilogLoggerAdapter<>));
-            services.AddDefaultIdentity<AppUser>(options => {
+            services.AddIdentity<AppUser, IdentityRole>(options => {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
                 options.Password.RequireDigit = true;
@@ -47,7 +47,6 @@ namespace eCommerceApp.Infrastructure.DependencyInjection {
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredUniqueChars = 1;
             })
-                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
