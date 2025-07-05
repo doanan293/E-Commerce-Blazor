@@ -73,6 +73,7 @@ namespace eCommerceApp.Infrastructure.DependencyInjection {
             services.AddScoped<IRoleManagement, RoleManagement>();
             services.AddScoped<IPaymentMethod, PaymentMethodRepository>();
             services.AddScoped<IPaymentService, StripePaymentService>();
+            Stripe.StripeConfiguration.ApiKey = config["Stripe:SecretKey"];
             return services;
         }
         public static IApplicationBuilder UseInfrastructureService(this IApplicationBuilder app) {
