@@ -18,4 +18,8 @@
     <ProjectReference Include="..\eCommerceApp.Infrastructure\eCommerceApp.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="log\" />
+  </ItemGroup>
+
 </Project>
